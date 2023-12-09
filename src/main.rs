@@ -3,9 +3,7 @@ use std::thread;
 use std::thread::sleep;
 use std::time::Duration;
 
-mod models {
-    pub mod walker;
-}
+mod models;
 
 use crate::models::walker::Walker;
 
