@@ -1,38 +1,13 @@
-use rand::Rng;
 use std::sync::{Arc, Mutex};
 use std::thread;
 use std::thread::sleep;
 use std::time::Duration;
 
-#[derive(Debug)]
-struct Walker {
-    id: usize,
-    x: i32,
-    y: i32,
+mod models {
+    pub mod walker;
 }
 
-impl Walker {
-    fn new(id: usize) -> Walker {
-        Walker { id, x: 0, y: 0 }
-    }
-
-    fn step(&mut self) {
-        let mut rng = rand::thread_rng();
-        let direction = rng.gen_range(0..4);
-
-        match direction {
-            0 => self.x += 1,
-            1 => self.x -= 1,
-            2 => self.y += 1,
-            3 => self.y -= 1,
-            _ => panic!("Invalid direction"),
-        }
-    }
-
-    fn position(&self) -> (i32, i32) {
-        (self.x, self.y)
-    }
-}
+use crate::models::walker::Walker;
 
 fn simulate(walker: &Arc<Mutex<Walker>>, steps: usize) {
     for _ in 0..steps {
