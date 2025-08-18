@@ -1,4 +1,5 @@
 mod world;
+mod world_objects;
 mod simulatron;
 
 use clap::Parser;
@@ -13,10 +14,14 @@ struct Cli {
     x: u32,
     /// Y dimension of the world
     y: u32,
+    /// Number of random world objects to initialize
+    #[arg(short, long, default_value_t = 0)]
+    num_objects: u32,
 }
 
 fn main() {
     let args = Cli::parse();
-    let simulatron = Simulatron::new(args.x, args.y);
+    let mut simulatron = Simulatron::new(args.x, args.y);
+    simulatron.initialize_random_world_objects(args.num_objects);
     simulatron.display_world();
 }

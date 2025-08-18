@@ -4,4 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+<<<<<<< Updated upstream
 clap = { version = "4.5.35", features = ["derive"] }
+rand = "0.8"
+
