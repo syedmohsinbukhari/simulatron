@@ -1,6 +1,7 @@
 mod world;
 mod world_objects;
 mod simulatron;
+mod visualization;
 
 use clap::Parser;
 use simulatron::Simulatron;
@@ -19,9 +20,10 @@ struct Cli {
     num_objects: u32,
 }
 
-fn main() {
+#[macroquad::main("Simulatron")]
+async fn main() {
     let args = Cli::parse();
     let mut simulatron = Simulatron::new(args.x, args.y);
     simulatron.initialize_random_world_objects(args.num_objects);
-    simulatron.display_world();
+    simulatron.visualize().await;
 }

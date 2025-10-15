@@ -2,6 +2,8 @@ use crate::world::World;
 use crate::world_objects::WorldObject;
 use rand::Rng;
 
+use crate::visualization;
+
 pub struct Simulatron {
     world: World,
 }
@@ -32,6 +34,11 @@ impl Simulatron {
         for obj in self.world.world_objects() {
             println!("  Object at: ({}, {})", obj.x, obj.y);
         }
+    }
+
+    pub async fn visualize(&self) {
+        self.display_world();
+        visualization::visualize_world(&self.world).await
     }
 }
 
