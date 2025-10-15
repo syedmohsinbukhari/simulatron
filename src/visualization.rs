@@ -25,10 +25,10 @@ fn draw_grid(screen_width: f32, screen_height: f32, world_x: u32, world_y: u32, 
 }
 
 pub async fn visualize_world(world: &World) {
-    let (screen_width, screen_height) = (800.0, 600.0);
     let (world_x, world_y) = world.dimensions();
+    let (screen_width, screen_height) = (20.0 * world_x as f32, 20.0 * world_y as f32);
 
-    request_new_screen_size(screen_width, screen_height + 30.0);
+    request_new_screen_size(screen_width, screen_height + 32.0);
 
     loop {
         clear_background(LIGHTGRAY);
