@@ -30,7 +30,7 @@ pub async fn visualize_world(world: &World) {
 
     request_new_screen_size(screen_width, screen_height + 32.0);
 
-    loop {
+    for _ in 0..60 {
         clear_background(LIGHTGRAY);
 
         let cell_width = screen_width / world_x as f32;
@@ -44,6 +44,12 @@ pub async fn visualize_world(world: &World) {
             let obj_x = obj.x as f32 * cell_width + cell_width / 2.0;
             let obj_y = obj.y as f32 * cell_height + cell_height / 2.0;
             draw_circle(obj_x, obj_y, cell_width / 3.0, RED);
+
+            // Draw direction indicator
+            let line_length = cell_width / 2.0;
+            let end_x = obj_x + (obj.vx as f32 * line_length);
+            let end_y = obj_y + (obj.vy as f32 * line_length);
+            draw_line(obj_x, obj_y, end_x, end_y, 2.0, BLACK);
         }
 
         next_frame().await
